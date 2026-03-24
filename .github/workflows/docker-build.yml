@@ -34,5 +34,9 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          load: true
           platforms: linux/amd64
           tags: ghcr.io/jemunro/sce-vcf:${{ inputs.image_tag || github.ref_name }}
+
+      - name: Test
+        run: docker run --rm ghcr.io/jemunro/sce-vcf:${{ inputs.image_tag || github.ref_name }} --help
